@@ -132,7 +132,8 @@ public class GestureImageView extends ImageView {
         }
 
         mBaseMatrix.postScale(actualScale, actualScale);
-        mBaseMatrix.postTranslate((getWidth() - mBitmapWidth * actualScale) / 2.00f, (getHeight() - mBitmapHeight * actualScale) / 2.00f);
+        //mBaseMatrix.postTranslate((getWidth() - mBitmapWidth * actualScale) / 2.00f, (getHeight() - mBitmapHeight * actualScale) / 2.00f);
+        mBaseMatrix.postTranslate((getWidth() - mBitmapWidth * actualScale) / 2.00f,0.0f);
 
         mInitialized = true;
     }
@@ -278,11 +279,38 @@ public class GestureImageView extends ImageView {
         zoomTo(scale, pointX, pointY, ZOOM_DURATION);
     }
 
+    /*
     public boolean canScrollParent() {
         if (mInitialized) {
             if (getTransX(mDisplayMatrix) == 0) {
                 return true;
             } else if (mBitmapWidth * getScaleX(mDisplayMatrix) + getTransX(mDisplayMatrix) <= getWidth()) {
+                return true;
+            }
+
+            return false;
+        }
+
+        return true;
+    }*/
+
+    //Vertical Scrolling adaptation
+    //TODO: Add options to switch between both
+    public boolean canScrollParent() {
+        if (mInitialized) {
+            float a = mBitmapHeight;
+            float b = getScaleY(mDisplayMatrix);
+            float c = getTransY(mDisplayMatrix);
+
+            float d = a * b + c - 1.0f;
+            int e = getHeight();
+
+            boolean f = (d <= e);
+            boolean g = (d <= (float)e);
+
+            if (getTransY(mDisplayMatrix) == 0) {
+                return true;
+            } else if ((mBitmapHeight * getScaleY(mDisplayMatrix) + getTransY(mDisplayMatrix) - 1.0f) <= getHeight()) {
                 return true;
             }
 
