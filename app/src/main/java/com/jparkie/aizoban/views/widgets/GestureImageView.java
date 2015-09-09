@@ -356,6 +356,7 @@ public class GestureImageView extends ImageView {
             mCurrentY = startY;
 
             mOverScroller.fling(startX, startY, velocityX, velocityY, minX, maxX, minY, maxY);
+            //mOverScroller.fling(startY, startX, velocityY, velocityX, minY, maxY, minX, maxX);
         }
 
         @Override

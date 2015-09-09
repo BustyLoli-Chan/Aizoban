@@ -29,5 +29,5 @@
     <!-- Backgrounds. -->
     <color name="primaryBackground">#FAFAFA</color>
     <color name="secondaryBackground">#FFFFFF</color>
-
+    <color name="chapterBackground">#222222</color>
 </resources>

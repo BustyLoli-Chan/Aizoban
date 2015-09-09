@@ -3,11 +3,12 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#222222">
 
     <include layout="@layout/empty"/>
 
-    <com.jparkie.aizoban.views.widgets.GestureViewPager
+    <com.jparkie.aizoban.views.widgets.VerticalGestureViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/viewPager"/>

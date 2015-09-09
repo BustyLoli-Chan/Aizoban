@@ -9,7 +9,6 @@ import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,16 +26,15 @@ import com.jparkie.aizoban.presenters.ChapterPresenterOnlineImpl;
 import com.jparkie.aizoban.presenters.mapper.ChapterMapper;
 import com.jparkie.aizoban.utils.wrappers.RequestWrapper;
 import com.jparkie.aizoban.views.ChapterView;
-import com.jparkie.aizoban.views.widgets.GestureViewPager;
+import com.jparkie.aizoban.views.widgets.VerticalGestureViewPager;
+import com.jparkie.aizoban.views.widgets.VerticalViewPager;
 import com.melnykov.fab.FloatingActionButton;
 
 import java.util.concurrent.TimeUnit;
 
 import rx.Observable;
-import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
-import rx.functions.Func1;
 
 public class ChapterActivity extends BaseActivity implements ChapterView, ChapterMapper {
     public static final String TAG = ChapterActivity.class.getSimpleName();
@@ -51,7 +49,7 @@ public class ChapterActivity extends BaseActivity implements ChapterView, Chapte
     private MenuItem mDirectionMenuItem;
     private MenuItem mOrientationMenuItem;
     private MenuItem mZoomMenuItem;
-    private GestureViewPager mViewPager;
+    private VerticalGestureViewPager mViewPager;
     private RelativeLayout mEmptyRelativeLayout;
     private FloatingActionButton mPreviousButton;
     private FloatingActionButton mNextButton;
@@ -97,7 +95,7 @@ public class ChapterActivity extends BaseActivity implements ChapterView, Chapte
         setContentView(R.layout.activity_chapter);
 
         mToolbar = (Toolbar) findViewById(R.id.mainToolbar);
-        mViewPager = (GestureViewPager) findViewById(R.id.viewPager);
+        mViewPager = (VerticalGestureViewPager) findViewById(R.id.viewPager);
         mEmptyRelativeLayout = (RelativeLayout) findViewById(R.id.emptyRelativeLayout);
         mPreviousButton = (FloatingActionButton) findViewById(R.id.previousButton);
         mNextButton = (FloatingActionButton) findViewById(R.id.nextButton);
@@ -255,7 +253,7 @@ public class ChapterActivity extends BaseActivity implements ChapterView, Chapte
             mViewPager.setOffscreenPageLimit(2);
             mViewPager.setPageMargin(16);
 
-            mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            mViewPager.setOnPageChangeListener(new VerticalViewPager.OnPageChangeListener() {
                 @Override
                 public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                     // Do Nothing.
@@ -272,7 +270,7 @@ public class ChapterActivity extends BaseActivity implements ChapterView, Chapte
                 }
             });
 
-            mViewPager.setOnChapterBoundariesOutListener(new GestureViewPager.OnChapterBoundariesOutListener() {
+            mViewPager.setOnChapterBoundariesOutListener(new VerticalGestureViewPager.OnChapterBoundariesOutListener() {
                 @Override
                 public void onFirstPageOut() {
                     mChapterPresenter.onFirstPageOut();
@@ -284,7 +282,7 @@ public class ChapterActivity extends BaseActivity implements ChapterView, Chapte
                 }
             });
 
-            mViewPager.setOnChapterSingleTapListener(new GestureViewPager.OnChapterSingleTapListener() {
+            mViewPager.setOnChapterSingleTapListener(new VerticalGestureViewPager.OnChapterSingleTapListener() {
                 @Override
                 public void onSingleTap() {
                     if (mSystemUIVisibility) {

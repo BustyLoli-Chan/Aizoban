@@ -325,6 +325,7 @@ public class MangaActivity extends BaseActivity implements MangaView, MangaMappe
             ((ImageView) mEmptyRelativeLayout.findViewById(R.id.emptyImageView)).setColorFilter(getResources().getColor(R.color.accentPinkA200), PorterDuff.Mode.MULTIPLY);
             ((TextView) mEmptyRelativeLayout.findViewById(R.id.emptyTextView)).setText(R.string.no_manga);
             ((TextView) mEmptyRelativeLayout.findViewById(R.id.instructionsTextView)).setText(R.string.manga_instructions);
+            //((TextView) mEmptyRelativeLayout.findViewById(R.id.instructionsTextView)).setBackgroundColor();
         }
     }
 
@@ -453,9 +454,9 @@ public class MangaActivity extends BaseActivity implements MangaView, MangaMappe
         if (mHeaderImageView != null) {
             mHeaderImageView.setScaleType(ImageView.ScaleType.CENTER);
 
-            Drawable placeHolderDrawable = getResources().getDrawable(R.drawable.ic_image_white_48dp);
+            Drawable placeHolderDrawable = getResources().getDrawable(R.drawable.ic_image_white_48dp, getApplicationContext().getTheme());
             placeHolderDrawable.setColorFilter(getResources().getColor(R.color.accentPinkA200), PorterDuff.Mode.MULTIPLY);
-            Drawable errorHolderDrawable = getResources().getDrawable(R.drawable.ic_error_white_48dp);
+            Drawable errorHolderDrawable = getResources().getDrawable(R.drawable.ic_error_white_48dp, getApplicationContext().getTheme());
             errorHolderDrawable.setColorFilter(getResources().getColor(R.color.accentPinkA200), PorterDuff.Mode.MULTIPLY);
 
             Glide.with(this)
