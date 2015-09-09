@@ -302,7 +302,7 @@ public class GestureImageView extends ImageView {
             float b = getScaleY(mDisplayMatrix);
             float c = getTransY(mDisplayMatrix);
 
-            float d = a * b + c - 1.0f;
+            float d = a * b + c - 1.00f;
             int e = getHeight();
 
             boolean f = (d <= e);
